@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Selection Modal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .navbar-brand {
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Product Selector</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Centered Button to Open the Modal -->
+<div class="container">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center align-items-center" style="height: 80vh;">
+          <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#productModal">
+            Select Product
+          </button>
+        </div>
+    </div>
+  </div>
+
+<!-- The Modal -->
+<div class="modal fade" id="productModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Select Product Options</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="form-group">
+            <label>Color:</label>
+            <div id="colorButtons" class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-outline-secondary" id="colorRed">
+                    <input type="radio" name="color" value="Red"> Red
+                </label>
+                <label class="btn btn-outline-secondary" id="colorBlack">
+                    <input type="radio" name="color" value="Black"> Black
+                </label>
+                <label class="btn btn-outline-secondary" id="colorWhite">
+                    <input type="radio" name="color" value="White"> White
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Memory:</label>
+            <div id="memoryButtons" class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-outline-secondary" id="memory64GB">
+                    <input type="radio" name="memory" value="64GB"> 64GB
+                </label>
+                <label class="btn btn-outline-secondary" id="memory128GB">
+                    <input type="radio" name="memory" value="128GB"> 128GB
+                </label>
+                <label class="btn btn-outline-secondary" id="memory256GB">
+                    <input type="radio" name="memory" value="256GB"> 256GB
+                </label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success btn-lg btn-block" onclick="submitForm()">Submit</button>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

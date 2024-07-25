@@ -1,0 +1,42 @@
+/* Custom styles */
+body {
+    background: url('bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
+}
+
+.modal-header {
+    background-color: #000000;
+    color: white;
+}
+
+.modal-footer {
+    justify-content: space-between;
+}
+
+.btn-outline-secondary {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-outline-secondary.disabled {
+    background-color: #e9ecef;
+    pointer-events: none;
+    opacity: 0.65;
+}
+
+.btn-primary {
+    width: 200px;
+}
+
+.center-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
