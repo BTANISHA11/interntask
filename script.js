@@ -1,27 +1,31 @@
-const productData = {
-    "Red": ["64GB", "256GB"],
-    "Black": ["64GB", "128GB"],
-    "White": ["256GB"]
-};
+const colors = ["Red", "Black", "White"];
+const memoryOptions = ["64GB", "128GB", "256GB"];
 
-const productIdMap = {
-    "Red_64GB": "1001",
-    "Black_64GB": "1002",
-    "Red_256GB": "1003",
-    "Black_128GB": "1004"
-};
+const products = [
+    [1001, "iPhone 64GB Red"],
+    [1002, "iPhone 64GB Black"],
+    [1003, "iPhone 256GB Red"],
+    [1004, "iPhone 128GB Black"]
+];
+
+const productCombinations = [
+    [1001, 0, 0],  // iPhone 64GB Red
+    [1002, 1, 0],  // iPhone 64GB Black
+    [1003, 0, 2],  // iPhone 256GB Red
+    [1004, 1, 1]   // iPhone 128GB Black
+];
 
 $(document).ready(function() {
     $("input[name='color']").change(function() {
-        const selectedColor = $("input[name='color']:checked").val();
-        if (selectedColor) {
+        const selectedColor = parseInt($("input[name='color']:checked").val());
+        if (!isNaN(selectedColor)) {
             disableUnavailableOptions(selectedColor, "color");
         }
     });
 
     $("input[name='memory']").change(function() {
-        const selectedMemory = $("input[name='memory']:checked").val();
-        if (selectedMemory) {
+        const selectedMemory = parseInt($("input[name='memory']:checked").val());
+        if (!isNaN(selectedMemory)) {
             disableUnavailableOptions(selectedMemory, "memory");
         }
     });
@@ -29,9 +33,9 @@ $(document).ready(function() {
 
 function disableUnavailableOptions(selectedOption, type) {
     if (type === "color") {
-        const availableMemories = productData[selectedOption];
+        const availableMemories = productCombinations.filter(product => product[1] === selectedOption).map(product => product[2]);
         $("#memoryButtons label").each(function() {
-            const memory = $(this).find("input").val();
+            const memory = parseInt($(this).find("input").val());
             if (availableMemories.includes(memory)) {
                 $(this).removeClass("disabled");
                 $(this).find("input").prop("disabled", false);
@@ -41,10 +45,10 @@ function disableUnavailableOptions(selectedOption, type) {
             }
         });
     } else if (type === "memory") {
+        const availableColors = productCombinations.filter(product => product[2] === selectedOption).map(product => product[1]);
         $("#colorButtons label").each(function() {
-            const color = $(this).find("input").val();
-            const availableMemories = productData[color];
-            if (availableMemories.includes(selectedOption)) {
+            const color = parseInt($(this).find("input").val());
+            if (availableColors.includes(color)) {
                 $(this).removeClass("disabled");
                 $(this).find("input").prop("disabled", false);
             } else {
@@ -56,11 +60,15 @@ function disableUnavailableOptions(selectedOption, type) {
 }
 
 function submitForm() {
-    const selectedColor = $("input[name='color']:checked").val();
-    const selectedMemory = $("input[name='memory']:checked").val();
-    if (selectedColor && selectedMemory) {
-        const productId = productIdMap[`${selectedColor}_${selectedMemory}`];
-        alert(`Selected Product ID: ${productId}`);
+    const selectedColor = parseInt($("input[name='color']:checked").val());
+    const selectedMemory = parseInt($("input[name='memory']:checked").val());
+    if (!isNaN(selectedColor) && !isNaN(selectedMemory)) {
+        const selectedProduct = productCombinations.find(product => product[1] === selectedColor && product[2] === selectedMemory);
+        if (selectedProduct) {
+            alert(`Selected Product ID: ${selectedProduct[0]}`);
+        } else {
+            alert("No product found with the selected options.");
+        }
     } else {
         alert("Please select both color and memory options.");
     }
