@@ -1,5 +1,14 @@
-const colors = ["Red", "Black", "White"];
-const memoryOptions = ["64GB", "128GB", "256GB"];
+const colors = [
+    [1, "Red"],
+    [2, "Black"],
+    [3, "White"]
+];
+
+const memoryOptions = [
+    [1, "64GB"],
+    [2, "128GB"],
+    [3, "256GB"]
+];
 
 const products = [
     [1001, "iPhone 64GB Red"],
@@ -9,10 +18,10 @@ const products = [
 ];
 
 const productCombinations = [
-    [1001, 0, 0],  // iPhone 64GB Red
-    [1002, 1, 0],  // iPhone 64GB Black
-    [1003, 0, 2],  // iPhone 256GB Red
-    [1004, 1, 1]   // iPhone 128GB Black
+    [1001, 1, 1],  // iPhone 64GB Red
+    [1002, 2, 1],  // iPhone 64GB Black
+    [1003, 1, 3],  // iPhone 256GB Red
+    [1004, 2, 2]   // iPhone 128GB Black
 ];
 
 $(document).ready(function() {
