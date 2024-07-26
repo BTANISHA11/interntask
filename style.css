@@ -38,5 +38,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 70vh;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
